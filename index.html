@@ -887,11 +887,20 @@ document.getElementById('btndl').addEventListener('click',function(){
   var mem = navigator.deviceMemory || 4;
   var scale = mem <= 2 ? 2 : 3;
 
-  html2canvas(ec,{
-  scale:scale,
-  useCORS:true,
-  allowTaint:true,
-  logging:true,
+html2canvas(ec, {
+    scale: 3,             // دقة عالية 
+    useCORS: true,        // لجلب الصور الخارجية
+    allowTaint: true,     // للسماح بالرسومات المعقدة
+    backgroundColor: null, // الحفاظ على خلفية الكارت كما هي
+    width: ec.offsetWidth,
+    height: ec.offsetHeight,
+    onclone: function(doc) {
+        // نضمن أن النسخة التي يتم تصويرها ثابتة تماماً
+        var clonedEC = doc.getElementById('EC');
+        clonedEC.style.transform = 'none';
+        clonedEC.classList.add('pf'); // تجميد الأنيميشن
+    }
+})
     backgroundColor:'#001529',
     logging:false,
     imageTimeout:20000,
