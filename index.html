@@ -533,7 +533,7 @@ html,body{
       <div class="fld">
         <!-- FIX: upload zone with label trick for better mobile compat -->
         <label for="iphoto" class="upl" id="uplzone">
-          <input type="file" id="iphoto" accept="image/*" capture="environment"/>
+          <input type="file" id="iphoto" accept="image/png, image/jpeg"/>
           <img id="uth" class="uth" src="" alt=""/>
           <div id="uic" class="uic">🖼️</div>
           <p id="ulb">انقر لرفع صورتك الشخصية</p>
@@ -594,6 +594,7 @@ html,body{
               <div class="bis">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
               <div class="ttl">عيد الأضحى المبارك</div>
               <div class="yr">١٤٤٧ هـ — ٢٠٢٦ م</div>
+              <div style="font-size: 0.6rem; color: #D4AF37; letter-spacing: 3px; margin-bottom: 5px;">PROMPTVAULT App</div>
             </div>
 
             <!-- MIDDLE -->
@@ -694,7 +695,9 @@ html,body{
             <!-- FOOTER -->
             <div class="ft">
               <div class="ay">وَلِكُلِّ أُمَّةٍ جَعَلْنَا مَنسَكًا لِّيَذْكُرُوا اسْمَ اللَّهِ</div>
-              <div class="br"><span class="bru">promptvaultai.net</span></div>
+              <div class="br" style="margin-top: 5px;">
+    <span class="bru" style="font-weight: 900; color: #D4AF37; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem;">PROMPTVAULTAI.NET</span>
+</div>
             </div>
 
             <div class="brd" id="bbot"></div>
@@ -885,9 +888,10 @@ document.getElementById('btndl').addEventListener('click',function(){
   var scale = mem <= 2 ? 2 : 3;
 
   html2canvas(ec,{
-    scale:scale,
-    useCORS:true,
-    allowTaint:true,
+  scale:scale,
+  useCORS:true,
+  allowTaint:true,
+  logging:true,
     backgroundColor:'#001529',
     logging:false,
     imageTimeout:20000,
