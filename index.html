@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#121826">
   <title>PromptVaultAI.net | مولد كروت عيد الأضحى</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@400;700;900&family=Noto+Kufi+Arabic:wght@500;700;900&display=swap" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     :root {
@@ -20,8 +23,9 @@
       --button-text: #16120a;
       --danger: #ffb1b1;
       --success: #b8f5cd;
-      --font-ui: "Segoe UI", Tahoma, Arial, sans-serif;
-      --font-display: "Aref Ruqaa", "Amiri", "Times New Roman", serif;
+      --font-ui: "Noto Kufi Arabic", "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+      --font-display: "Aref Ruqaa Ink", "Aref Ruqaa", "Amiri", "Times New Roman", serif;
+      --font-calligraphy: "Amiri", "Aref Ruqaa Ink", "Times New Roman", serif;
       color-scheme: dark;
     }
 
@@ -357,14 +361,15 @@
       --card-border: rgba(232, 199, 106, 0.9);
       --inner-border: rgba(255, 255, 255, 0.16);
       --photo-radius: 50%;
-      --photo-size: 38%;
+      --photo-size: 36%;
       --photo-y: 0%;
-      --sheep-x: -38%;
-      --sheep-y: 83.5%;
-      --sheep-size: 18%;
-      --title-top: 7%;
-      --name-top: 66.2%;
-      --message-top: 74.2%;
+      --photo-bg: linear-gradient(145deg, rgba(8, 10, 13, 0.96), rgba(69, 57, 30, 0.74));
+      --sheep-x: -35%;
+      --sheep-y: 78.5%;
+      --sheep-size: 20%;
+      --title-top: 6.2%;
+      --name-top: 57.8%;
+      --message-top: 65.8%;
       --signature-bottom: 3.2%;
       position: relative;
       isolation: isolate;
@@ -463,8 +468,29 @@
       opacity: 0.8;
     }
 
+    .deco-kaaba-mark {
+      width: 13%;
+      height: 8.5%;
+      border: 2px solid currentColor;
+      border-radius: 7px 7px 2px 2px;
+      background:
+        linear-gradient(90deg, transparent 11%, currentColor 11% 18%, transparent 18% 82%, currentColor 82% 89%, transparent 89%),
+        linear-gradient(#101010 0 38%, currentColor 38% 48%, #050505 48%);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.26);
+    }
+
+    .deco-kaaba-mark::before {
+      content: "";
+      position: absolute;
+      left: 13%;
+      right: 13%;
+      top: 35%;
+      height: 2px;
+      background: rgba(255, 244, 194, 0.72);
+    }
+
     .deco-1 { top: 5%; right: 8%; }
-    .deco-2 { top: 10%; left: 12%; transform: scale(1.15) rotate(14deg); }
+    .deco-2 { top: 11%; left: 12%; transform: scale(1.08) rotate(-5deg); }
     .deco-3 { top: 23%; right: 15%; transform: scale(0.8); }
     .deco-4 { bottom: 19%; left: 12%; transform: scale(0.9) rotate(-9deg); }
     .deco-5 { bottom: 8%; right: 15%; transform: scale(1.2) rotate(10deg); }
@@ -566,7 +592,7 @@
       padding: var(--photo-padding, 7px);
       border: var(--photo-border-width, 3px) solid var(--photo-border, var(--card-gold));
       border-radius: var(--photo-radius);
-      background: var(--photo-bg, rgba(255, 255, 255, 0.16));
+      background: var(--photo-bg, linear-gradient(145deg, rgba(8, 10, 13, 0.96), rgba(69, 57, 30, 0.74)));
       box-shadow: var(--photo-shadow, 0 18px 42px rgba(0, 0, 0, 0.32));
       transform: translate(-50%, -50%) rotate(var(--photo-rotate, 0deg));
       overflow: hidden;
@@ -594,7 +620,8 @@
     .photo-frame img {
       display: none;
       object-fit: cover;
-      background: rgba(255, 255, 255, 0.2);
+      object-position: center center;
+      background: #111315;
     }
 
     .photo-placeholder {
@@ -604,8 +631,8 @@
       text-align: center;
       color: var(--card-muted);
       background:
-        radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.34), transparent 22%),
-        linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.16));
+        radial-gradient(circle at 50% 36%, rgba(232, 199, 106, 0.34), transparent 24%),
+        linear-gradient(145deg, rgba(8, 10, 13, 0.94), rgba(69, 57, 30, 0.68));
       font-size: clamp(0.8rem, 3.5vw, 1.06rem);
       font-weight: 900;
       line-height: 1.45;
@@ -640,7 +667,7 @@
     .card-title {
       margin: 0;
       font-family: var(--font-display);
-      font-size: clamp(1.85rem, 8.8vw, 3.05rem);
+      font-size: clamp(2.25rem, 10.4vw, 4.85rem);
       line-height: 1.02;
       color: var(--title-color, var(--card-ink));
       text-shadow: var(--title-shadow, 0 3px 18px rgba(0, 0, 0, 0.26));
@@ -649,14 +676,14 @@
     .card-year {
       margin: 0.28rem 0 0;
       color: var(--year-color, var(--card-gold));
-      font-size: clamp(0.86rem, 3.25vw, 1.08rem);
+      font-size: clamp(1rem, 3.8vw, 1.55rem);
       font-weight: 900;
     }
 
     .card-name {
       top: var(--name-top);
       font-family: var(--font-display);
-      font-size: clamp(1.38rem, 6.2vw, 2.35rem);
+      font-size: clamp(1.8rem, 7.6vw, 3.25rem);
       font-weight: 900;
       line-height: 1.15;
       color: var(--name-color, var(--card-gold));
@@ -666,14 +693,16 @@
     .card-message {
       top: var(--message-top);
       display: -webkit-box;
-      max-height: 15.8%;
+      max-height: 20%;
       overflow: hidden;
       color: var(--message-color, var(--card-muted));
-      font-size: clamp(0.86rem, 3.25vw, 1.04rem);
+      font-family: var(--font-calligraphy);
+      font-size: clamp(1.05rem, 4vw, 1.38rem);
       font-weight: 700;
-      line-height: 1.65;
+      line-height: 1.78;
       white-space: pre-line;
-      -webkit-line-clamp: 4;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+      -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
     }
 
@@ -831,18 +860,19 @@
 
     .theme-black-gold {
       --card-bg:
-        repeating-linear-gradient(135deg, rgba(236, 200, 103, 0.14) 0 1px, transparent 1px 18px),
-        radial-gradient(circle at 50% 32%, rgba(236, 200, 103, 0.22), transparent 31%),
-        linear-gradient(150deg, #000, #171717 58%, #050505);
+        radial-gradient(circle at 50% 42%, rgba(236, 200, 103, 0.18), transparent 24%),
+        repeating-linear-gradient(135deg, rgba(236, 200, 103, 0.09) 0 1px, transparent 1px 24px),
+        linear-gradient(150deg, #050505, #101010 58%, #030303);
       --card-ink: #fff1c3;
       --card-muted: rgba(255, 241, 195, 0.78);
       --card-gold: #ecc867;
       --card-border: #ecc867;
       --frame-line: rgba(236, 200, 103, 0.55);
-      --photo-radius: 8px;
-      --photo-size: 43%;
+      --photo-radius: 50%;
+      --photo-size: 36%;
       --photo-border-width: 4px;
-      --photo-shadow: 0 18px 0 rgba(236, 200, 103, 0.08), 0 24px 48px rgba(0, 0, 0, 0.4);
+      --photo-bg: linear-gradient(145deg, rgba(6, 6, 6, 0.98), rgba(75, 59, 26, 0.68));
+      --photo-shadow: 0 14px 34px rgba(0, 0, 0, 0.46), 0 0 0 10px rgba(236, 200, 103, 0.06);
       --signature-bg: rgba(236, 200, 103, 0.12);
     }
 
@@ -1086,14 +1116,16 @@
 
     /* Stable layout pass: photo below title/date, sheep away from the name. */
     .eid-card {
-      --photo-size: 38%;
+      --photo-size: 36%;
+      --photo-radius: 50%;
       --photo-y: 0%;
-      --sheep-x: -38%;
-      --sheep-y: 83.5%;
-      --sheep-size: 18%;
-      --title-top: 7%;
-      --name-top: 66.2%;
-      --message-top: 74.2%;
+      --photo-bg: linear-gradient(145deg, rgba(8, 10, 13, 0.96), rgba(69, 57, 30, 0.74));
+      --sheep-x: -35%;
+      --sheep-y: 78.5%;
+      --sheep-size: 20%;
+      --title-top: 6.2%;
+      --name-top: 57.8%;
+      --message-top: 65.8%;
     }
 
     .is-exporting *,
@@ -1215,7 +1247,7 @@
 
           <label class="field-group">
             <span class="field-label">رسالة التهنئة</span>
-            <textarea id="messageInput" class="message-field" maxlength="170" placeholder="اكتب رسالة تهنئة قصيرة">كل عام وأنتم بخير، أعاده الله عليكم بالخير والبركة والفرح.</textarea>
+            <textarea id="messageInput" class="message-field" maxlength="240" placeholder="اكتب رسالة تهنئة ملكية">كل عام وأنتم إلى الله أقرب، تقبّل الله طاعتكم، وأعاد عليكم عيد الأضحى المبارك بالخير والبركة والسكينة وتمام الفرح.</textarea>
           </label>
 
           <label class="file-drop" for="photoInput">
@@ -1261,7 +1293,7 @@
         <div class="phone-frame">
           <article id="eidCard" class="eid-card theme-royal-night" aria-label="كارت تهنئة عيد الأضحى">
             <span class="deco deco-crescent deco-1" aria-hidden="true"></span>
-            <span class="deco deco-lantern deco-2" aria-hidden="true"></span>
+            <span class="deco deco-kaaba-mark deco-2" aria-hidden="true"></span>
             <span class="deco deco-star deco-3" aria-hidden="true"></span>
             <span class="deco deco-star deco-4" aria-hidden="true"></span>
             <span class="deco deco-star deco-5" aria-hidden="true"></span>
@@ -1313,7 +1345,7 @@
             </div>
 
             <div id="cardName" class="card-copy card-name">أحمد</div>
-            <div id="cardMessage" class="card-copy card-message">كل عام وأنتم بخير، أعاده الله عليكم بالخير والبركة والفرح.</div>
+            <div id="cardMessage" class="card-copy card-message">كل عام وأنتم إلى الله أقرب، تقبّل الله طاعتكم، وأعاد عليكم عيد الأضحى المبارك بالخير والبركة والسكينة وتمام الفرح.</div>
             <div class="brand-signature">PromptVaultAI.net</div>
           </article>
         </div>
@@ -1350,7 +1382,7 @@
 
       const defaults = {
         name: "أحمد",
-        message: "كل عام وأنتم بخير، أعاده الله عليكم بالخير والبركة والفرح.",
+        message: "كل عام وأنتم إلى الله أقرب، تقبّل الله طاعتكم، وأعاد عليكم عيد الأضحى المبارك بالخير والبركة والسكينة وتمام الفرح.",
         themeIndex: 0
       };
 
@@ -1679,7 +1711,7 @@
           dom.nameInput.value = name.slice(0, 32);
         }
         if (message) {
-          dom.messageInput.value = message.slice(0, 170);
+          dom.messageInput.value = message.slice(0, 240);
         }
         if (Number.isFinite(theme) && theme >= 1 && theme <= themes.length) {
           currentThemeIndex = theme - 1;
