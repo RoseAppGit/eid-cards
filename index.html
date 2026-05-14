@@ -1481,26 +1481,82 @@
         });
       }
 
+      function getVisibleImageBox(image) {
+        const maxProbeSide = 700;
+        const probeRatio = Math.min(1, maxProbeSide / Math.max(image.naturalWidth, image.naturalHeight));
+        const probeWidth = Math.max(1, Math.round(image.naturalWidth * probeRatio));
+        const probeHeight = Math.max(1, Math.round(image.naturalHeight * probeRatio));
+        const canvas = document.createElement("canvas");
+        canvas.width = probeWidth;
+        canvas.height = probeHeight;
+        const context = canvas.getContext("2d", { willReadFrequently: true });
+        context.clearRect(0, 0, probeWidth, probeHeight);
+        context.drawImage(image, 0, 0, probeWidth, probeHeight);
+
+        let minX = probeWidth;
+        let minY = probeHeight;
+        let maxX = 0;
+        let maxY = 0;
+        let visiblePixels = 0;
+        const pixels = context.getImageData(0, 0, probeWidth, probeHeight).data;
+
+        for (let y = 0; y < probeHeight; y += 1) {
+          for (let x = 0; x < probeWidth; x += 1) {
+            const alpha = pixels[(y * probeWidth + x) * 4 + 3];
+            if (alpha > 24) {
+              visiblePixels += 1;
+              minX = Math.min(minX, x);
+              minY = Math.min(minY, y);
+              maxX = Math.max(maxX, x);
+              maxY = Math.max(maxY, y);
+            }
+          }
+        }
+
+        if (!visiblePixels || visiblePixels > probeWidth * probeHeight * 0.94) {
+          return { x: 0, y: 0, width: image.naturalWidth, height: image.naturalHeight };
+        }
+
+        const padding = Math.round(Math.max(probeWidth, probeHeight) * 0.04);
+        minX = Math.max(0, minX - padding);
+        minY = Math.max(0, minY - padding);
+        maxX = Math.min(probeWidth - 1, maxX + padding);
+        maxY = Math.min(probeHeight - 1, maxY + padding);
+
+        return {
+          x: Math.round(minX / probeRatio),
+          y: Math.round(minY / probeRatio),
+          width: Math.round((maxX - minX + 1) / probeRatio),
+          height: Math.round((maxY - minY + 1) / probeRatio)
+        };
+      }
+
       async function resizeImageFile(file) {
         const source = await readFileAsDataUrl(file);
         const image = await loadImageElement(source);
-        const maxSide = 1600;
-        const ratio = Math.min(1, maxSide / Math.max(image.naturalWidth, image.naturalHeight));
-        const width = Math.max(1, Math.round(image.naturalWidth * ratio));
-        const height = Math.max(1, Math.round(image.naturalHeight * ratio));
+        const visibleBox = getVisibleImageBox(image);
+        let cropX = visibleBox.x;
+        let cropY = visibleBox.y;
+        let cropWidth = visibleBox.width;
+        let cropHeight = visibleBox.height;
+        const cropSize = Math.min(cropWidth, cropHeight);
 
-        if (ratio === 1 && file.size < 900000) {
-          return source;
-        }
+        cropX += Math.max(0, (cropWidth - cropSize) / 2);
+        cropY += Math.max(0, (cropHeight - cropSize) / 2);
+        cropWidth = cropSize;
+        cropHeight = cropSize;
 
+        const outputSize = 1200;
         const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = outputSize;
+        canvas.height = outputSize;
         const context = canvas.getContext("2d", { alpha: false });
-        context.fillStyle = "#ffffff";
-        context.fillRect(0, 0, width, height);
-        context.drawImage(image, 0, 0, width, height);
-        return canvas.toDataURL("image/jpeg", 0.9);
+        context.fillStyle = "#111315";
+        context.fillRect(0, 0, outputSize, outputSize);
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = "high";
+        context.drawImage(image, cropX, cropY, cropWidth, cropHeight, 0, 0, outputSize, outputSize);
+        return canvas.toDataURL("image/jpeg", 0.94);
       }
 
       async function handlePhotoUpload(event) {
